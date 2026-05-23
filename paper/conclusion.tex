@@ -1,0 +1,6 @@
+\section*{Limitations}
+\label{sec:limitations}
+
+Our benchmark uses full-replacement chains at 1--1.5B parameters; real-world contamination involves accumulation at unknown mixing ratios, and depth signal attenuates at larger scales (\S\ref{sec:gen:crossscale}), with reference-model mismatch contributing to the observed degradation (Appendix~\ref{app:cross_scale_full}).
+Cross-strategy transfer can invert adjacent-depth predictions, requiring strategy-aware deployment (\S\ref{sec:gen:crossstrategy}).
+On held-out web-crawl corpora, pooled-classifier raw false-positive rates range from 15\% to 34\%, reducible to ${\leq}$7\% via posterior-threshold calibration (Appendix~\ref{app:calibration}); robustness to post-hoc paraphrasing remains untested.
