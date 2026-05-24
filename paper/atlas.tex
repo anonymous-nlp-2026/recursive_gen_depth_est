@@ -34,7 +34,7 @@ GPT-2~XL    & \textbf{84.3}{\scriptsize$\pm$0.5}\,(79.6) & \textbf{85.9}{\script
 
 \paragraph{Per-class recall.}
 Depth-0 recall exceeds 97\% in all 9 cells.
-Among generated depths, d2 consistently yields the lowest recall (44--73\%), reflecting its position at the center of the depth gradient where features overlap with both d1 and d3, consistent with d2-vs-d3 as the EDD bottleneck (\S\ref{sec:atlas:edd}; full per-class recall in Appendix~\ref{app:per_class}).
+Among generated depths, d2 consistently yields the lowest recall (44--73\%), reflecting its position at the center of the depth gradient where features overlap with both d1 and d3, consistent with d2-vs-d3 as the EDD bottleneck (\S\ref{sec:atlas:edd}; full per-class recall and confusion matrices in Appendix~\ref{app:per_class}, \ref{app:confusion_matrices}).
 
 %% ----------------------------------------------------------------
 \subsection{Feature Consistency Across the Grid}
@@ -124,6 +124,6 @@ Top-$k$ configurations lose $\mathrm{EDD}{=}3$ first (Pythia top-$k$ at $T{=}0.7
 \label{sec:atlas:strategy}
 
 The three strategies induce qualitatively distinct degradation trajectories.
-Temperature ($\tau{=}0.9$) yields the highest accuracy in 2/3 models (GPT-2~XL 85.9\%, OLMo 82.3\%) because uniform logit scaling accelerates convergence to an attractor~\cite{shumailov2024_nature}, amplifying the fingerprint but creating a boundary reversal risk under cross-strategy transfer (\S\ref{sec:generalization}).
+Temperature ($\tau{=}0.9$) yields the highest accuracy in 2/3 models (GPT-2~XL 85.9\%, OLMo 82.3\%) because uniform logit scaling accelerates convergence to an attractor~\cite{shumailov2024_nature}, amplifying the fingerprint but creating a boundary reversal risk under cross-strategy transfer (\S\ref{sec:generalization}; temperature robustness analysis in Appendix~\ref{app:multi_tau}).
 Top-$k$ ($k{=}50$) produces the lowest accuracy (68.9--75.8\%) because hard vocabulary truncation removes depth-discriminative low-probability tokens.
 The strategy effect (9.3\,pp range) exceeds the model effect (7.2\,pp); deployment-time knowledge of the decoding strategy matters at least as much as the generator model.

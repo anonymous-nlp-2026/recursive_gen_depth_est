@@ -1,9 +1,9 @@
 \section{Discussion and Conclusion}
 \label{sec:discussion}
 
-Four importance measures converge on the same feature ranking (Kendall's $W{=}0.90$); Binoculars-derived features independently reach 78.1\%, not statistically distinguishable from 78.4\% (merged: 82.6\%).
+Four importance measures converge on the same feature ranking (Kendall's $W{=}0.90$); Binoculars-derived features independently reach 78.1\%, not statistically distinguishable from 78.4\% (merged: 82.6\%; signal decomposition in Appendix~\ref{app:feature_ablation_bino}).
 CORAL ordinal regression yields only +0.3\,pp (Appendix~\ref{app:learned_estimator}), confirming ordinal structure is captured by the feature space.
-End-to-end classifiers lag RF by 14--33\,pp (\S\ref{sec:gen:baselines}) despite full token-level context (d2 F1 ${\leq}$0.26; Appendix~\ref{app:e2e}), confirming that targeted feature engineering is necessary.
+End-to-end classifiers lag RF by 14--33\,pp (\S\ref{sec:gen:baselines}) despite full token-level context (d2 F1 ${\leq}$0.26; Appendix~\ref{app:e2e}, \ref{app:dcol_iterations}), confirming that targeted feature engineering is necessary.
 The strategy effect (9.3\,pp) exceeding the model effect (7.2\,pp) requires conditioning on decoding configuration (\S\ref{sec:gen:crossstrategy}).
 The pipeline relies on a fixed reference model; cross-architecture alternatives degrade by 4--11\,pp (Appendix~\ref{app:ref_ablation}), and a 7B self-reference probe ($\mathrm{EDD}_{0.70}{=}0$; Appendix~\ref{app:qwen7b_selfref}) reveals a self-reference ceiling.
 Accumulation experiments and cross-boundary chains (84.8\%; Appendix~\ref{app:accumulation_auc},~\ref{app:cross_boundary}) suggest depth signal is process-level.

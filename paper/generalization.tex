@@ -71,8 +71,8 @@ Mean transfer accuracy is 66.4\% ($2.7{\times}$ chance; Table~\ref{tab:cross_mod
 \subsection{Cross-Strategy Transfer}
 \label{sec:gen:crossstrategy}
 
-Cross-strategy transfer reveals a structural barrier: d1--d3 balanced accuracy drops to 45.9\% (four-class: 59.1\%), 7\,pp below cross-model transfer (Table~\ref{tab:cross_strategy}; Figure~\ref{fig:transfer_comparison}).
-A two-stage pipeline (strategy classifier $\to$ depth classifier) recovers much of this gap (70.5\%, $+$11.5\,pp; oracle: 78.3\%; Appendix~\ref{app:extended_discussion}).
+Cross-strategy transfer reveals a structural barrier: d1--d3 balanced accuracy drops to 45.9\% (four-class: 59.1\%), 7\,pp below cross-model transfer (Table~\ref{tab:cross_strategy}; full per-model results in Appendix~\ref{app:cross_strategy}; Figure~\ref{fig:transfer_comparison}).
+A two-stage pipeline (strategy classifier $\to$ depth classifier) recovers much of this gap (70.6\%, $+$11.5\,pp; oracle: 78.4\%; Appendix~\ref{app:extended_discussion}).
 Our depth estimation claims hold most strongly within-strategy or when the decoding configuration is known.
 
 \begin{figure}[t]
@@ -87,4 +87,5 @@ Our depth estimation claims hold most strongly within-strategy or when the decod
 \label{sec:gen:crossscale}
 
 At 14B (Qwen2.5-14B), self-reference yields 50.8\% ($2{\times}$ chance, $\mathrm{EDD}_{0.70}{=}0$); switching to cross-reference (Pythia-1.4B) shifts accuracy by $-$6.8\,pp to 44.1\% but raises $\mathrm{EDD}_{0.70}$ to 2 for nucleus and temperature, indicating that reference-model choice is a major confound in cross-scale comparisons (Appendix~\ref{app:cross_scale_full}).
+At matched 1.5B scale, instruction tuning preserves depth signal (Appendix~\ref{app:instruct_1p5b}).
 Cross-domain transfer to arXiv abstracts reaches 74.1\% (Appendix~\ref{app:domain_bias}).

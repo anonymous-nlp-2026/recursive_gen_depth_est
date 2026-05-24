@@ -31,7 +31,7 @@ The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--st
 For depth extension experiments (\S\ref{sec:atlas}), we extend all three models under nucleus sampling to d0--d5.
 
 \paragraph{Generation pipeline.}
-Starting from a Wikipedia subset ($\mathcal{D}_0$), each cycle: (1)~LoRA finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$ ($r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, effective batch 16, 3 epochs, dropout $0.05$; fresh adapter from the base model at each depth; full protocol in Appendix~\ref{app:lora_protocol}); (2)~sampling 5{,}000 passages (max 512 tokens, beginning-of-sequence (BOS) seeded) under the specified strategy; (3)~$\mathcal{D}_k$ feeds the next cycle.
+Starting from a Wikipedia subset ($\mathcal{D}_0$), each cycle: (1)~LoRA finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$ ($r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, effective batch 16, 3 epochs, dropout $0.05$; fresh adapter from the base model at each depth; full protocol in Appendix~\ref{app:lora_protocol}; cross-seed replication in Appendix~\ref{app:seed_replication}); (2)~sampling 5{,}000 passages (max 512 tokens, beginning-of-sequence (BOS) seeded; Appendix~\ref{app:length_ablation}) under the specified strategy; (3)~$\mathcal{D}_k$ feeds the next cycle.
 Each depth is produced by a model trained on prior-depth data, not by sampling from the unmodified base model.
 BOS seeding may amplify depth signal; prompted-generation validation (Appendix~\ref{app:prompted_gen}) confirms signal persistence albeit attenuated ($-$13.8\,pp).
 No per-passage lineage exists across depths; cross-validation splits do not introduce leakage.
@@ -102,6 +102,6 @@ All AUC profiles in the primary benchmark decay monotonically; non-monotonic pro
 We adopt $T{=}0.70$ following the ``acceptable discrimination'' threshold in ROC analysis \cite{hosmer2000} (8/9 cells achieve $\mathrm{EDD}_{0.70} \geq 3$); sensitivity analysis (\S\ref{sec:atlas:edd}) shows $\mathrm{EDD}$ shifts by at most one level across $T \in \{0.65, 0.70, 0.80\}$ in all nine cells.
 
 \paragraph{Classifiers.}
-Our primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold CV; EDD binary classifiers use 500 trees).\footnote{Statistical tests are not corrected for multiple comparisons; $p$-values should be interpreted as exploratory.}
+Our primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold CV; EDD binary classifiers use 500 trees; seed robustness in Appendix~\ref{app:rf_seed}).\footnote{Statistical tests are not corrected for multiple comparisons; $p$-values should be interpreted as exploratory.}
 The RF produces ordinally consistent predictions: 98.2\% of errors fall on adjacent depths ($|\Delta| \leq 1$), quadratic weighted kappa (QWK)\,=\,0.89.
 Comparisons against other classifiers and detection baselines appear in \S\ref{sec:generalization}.
