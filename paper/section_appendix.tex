@@ -102,6 +102,32 @@ CPI and Gini rankings agree on the dominant feature (\texttt{var\_surprisal} or 
 Bootstrap rank CI widths $\leq 0.5$ for the top-2 features confirm that these rankings are not artifacts of collinearity or resampling variability.
 Controlling for multicollinearity via conditional permutation corroborates the Gini- and SHAP-based importance hierarchy reported in the main text.
 
+\subsection{Per-Cell Gini Feature Rankings}
+\label{app:gini_per_cell}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Top-5 features by Gini importance. \textbf{Bold}: top-2. \texttt{p90\_ppl} top-2 in 9/9; \texttt{var\_surprisal} 8/9 under SHAP (7/9 under Gini). Individual rankings are approximate due to multicollinearity (VIF${>}$10 for 14--16/19 features).}
+\label{tab:feature_importance}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l l@{}}
+\toprule
+Cell & Top-5 features (Gini importance, ranked) \\
+\midrule
+Pythia, nuc.       & \textbf{var\_surprisal\,(.17)}, \textbf{p90\_ppl\,(.15)}, mean\_ppl\,(.11), var\_ppl\,(.08), p75\_ppl\,(.07) \\
+Pythia, $\tau$     & \textbf{var\_surprisal\,(.17)}, \textbf{p90\_ppl\,(.14)}, mean\_ppl\,(.11), p75\_ppl\,(.07), mean\_surprisal\,(.07) \\
+Pythia, top-$k$    & \textbf{var\_surprisal\,(.16)}, \textbf{p90\_ppl\,(.12)}, mean\_ppl\,(.11), var\_ppl\,(.07), mean\_surprisal\,(.06) \\
+GPT-2\,XL, nuc.    & \textbf{var\_surprisal\,(.21)}, \textbf{p90\_ppl\,(.21)}, p75\_ppl\,(.10), mean\_surprisal\,(.07), mean\_ppl\,(.06) \\
+GPT-2\,XL, $\tau$  & \textbf{p90\_ppl\,(.25)}, \textbf{p75\_ppl\,(.15)}, mean\_surprisal\,(.13), var\_surprisal\,(.12), p50\_ppl\,(.05) \\
+GPT-2\,XL, top-$k$ & \textbf{p90\_ppl\,(.24)}, \textbf{p75\_ppl\,(.12)}, var\_surprisal\,(.10), mean\_surprisal\,(.09), type\_token\_ratio\,(.04) \\
+OLMo, nuc.         & \textbf{p90\_ppl\,(.18)}, \textbf{var\_surprisal\,(.15)}, p75\_ppl\,(.11), mean\_surprisal\,(.07), type\_token\_ratio\,(.06) \\
+OLMo, $\tau$       & \textbf{p90\_ppl\,(.21)}, \textbf{var\_surprisal\,(.16)}, p75\_ppl\,(.12), mean\_surprisal\,(.09), type\_token\_ratio\,(.05) \\
+OLMo, top-$k$      & \textbf{p90\_ppl\,(.20)}, \textbf{var\_surprisal\,(.17)}, p75\_ppl\,(.10), mean\_surprisal\,(.07), mean\_ppl\,(.05) \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 \subsection{Per-Class Recall}
 \label{app:per_class}
 
@@ -160,6 +186,13 @@ top-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_transfer_comparison.pdf}
+\caption{Cross-model vs.\ cross-strategy transfer accuracy (leave-one-out). Strategy holdout range ($\Delta{=}11.6$\,pp) exceeds model holdout range ($\Delta{=}6.8$\,pp); decoding configuration is the primary transfer barrier.}
+\label{fig:transfer_comparison}
+\end{figure}
 
 \subsection{Accumulation Pairwise AUC}
 \label{app:accumulation_auc}

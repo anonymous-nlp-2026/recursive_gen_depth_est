@@ -44,7 +44,7 @@ Multicollinearity is substantial (VIF${>}$10 for 14--16 of 19 features); importa
 Despite the 17.0~pp accuracy spread across cells, the perplexity tail statistics family (\texttt{p90\_ppl}, \texttt{p75\_ppl}, \texttt{kurtosis\_ppl}) and surprisal variance (\texttt{var\_surprisal}) dominate depth discrimination in every setting.
 Within this family, \texttt{p90\_ppl} and \texttt{var\_surprisal} are consistently prominent, though individual rankings should be interpreted cautiously given VIF${>}$10; group-level ablation (\S\ref{sec:atlas:features}, below) provides the collinearity-robust confirmation.\footnote{The group-level dominance of perplexity tail statistics is robust across importance measures (Gini, SHAP, permutation; Kendall's $W{=}0.90$, $p{<}0.005$).}
 Conditional permutation importance \citep{strobl2008_conditional} confirms \texttt{var\_surprisal} and \texttt{p90\_ppl} as top-2 in 8/9 cells (bootstrap rank 1.4 and 1.7), consistent with Gini rankings (Appendix~\ref{app:conditional_pi}).
-Table~\ref{tab:feature_importance} shows the full per-cell ranking; Figure~\ref{fig:atlas_heatmap} visualizes the importance landscape across all nine cells.
+Full per-cell rankings appear in Table~\ref{tab:feature_importance} (Appendix~\ref{app:gini_per_cell}); Figure~\ref{fig:atlas_heatmap} visualizes the importance landscape across all nine cells.
 
 Cross-model feature-rank Spearman correlation averages $\bar{\rho} = 0.868$ ($[0.619, 0.954]$): models agree on which features carry depth information despite differing in absolute accuracy.
 Top-$k$ yields the highest cross-model rank correlation ($\rho = 0.811$), as vocabulary truncation imposes a more uniform feature landscape at the cost of weaker signal (\S\ref{sec:atlas:strategy}).
@@ -55,28 +55,6 @@ The feature hierarchy shifts with depth.
 At shallow boundaries (d1 vs.\ d2), \texttt{var\_surprisal} dominates importance; at deeper boundaries (d3 vs.\ d4, d4 vs.\ d5), tail perplexity statistics (\texttt{p90\_ppl}, \texttt{kurtosis\_ppl}) take over.
 This transition aligns with model-collapse dynamics~\cite{shumailov2024_nature}: early recursion narrows the surprisal distribution (captured by its variance), while later steps erode the perplexity tail (captured by upper quantiles and kurtosis).
 
-\begin{table}[t]
-\centering
-\small
-\caption{Top-5 features by Gini importance. \textbf{Bold}: top-2. \texttt{p90\_ppl} top-2 in 9/9; \texttt{var\_surprisal} 8/9 under SHAP (7/9 under Gini). Individual rankings are approximate due to multicollinearity (VIF${>}$10 for 14--16/19 features).}
-\label{tab:feature_importance}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}l l@{}}
-\toprule
-Cell & Top-5 features (Gini importance, ranked) \\
-\midrule
-Pythia, nuc.       & \textbf{var\_surprisal\,(.17)}, \textbf{p90\_ppl\,(.15)}, mean\_ppl\,(.11), var\_ppl\,(.08), p75\_ppl\,(.07) \\
-Pythia, $\tau$     & \textbf{var\_surprisal\,(.17)}, \textbf{p90\_ppl\,(.14)}, mean\_ppl\,(.11), p75\_ppl\,(.07), mean\_surprisal\,(.07) \\
-Pythia, top-$k$    & \textbf{var\_surprisal\,(.16)}, \textbf{p90\_ppl\,(.12)}, mean\_ppl\,(.11), var\_ppl\,(.07), mean\_surprisal\,(.06) \\
-GPT-2\,XL, nuc.    & \textbf{var\_surprisal\,(.21)}, \textbf{p90\_ppl\,(.21)}, p75\_ppl\,(.10), mean\_surprisal\,(.07), mean\_ppl\,(.06) \\
-GPT-2\,XL, $\tau$  & \textbf{p90\_ppl\,(.25)}, \textbf{p75\_ppl\,(.15)}, mean\_surprisal\,(.13), var\_surprisal\,(.12), p50\_ppl\,(.05) \\
-GPT-2\,XL, top-$k$ & \textbf{p90\_ppl\,(.24)}, \textbf{p75\_ppl\,(.12)}, var\_surprisal\,(.10), mean\_surprisal\,(.09), type\_token\_ratio\,(.04) \\
-OLMo, nuc.         & \textbf{p90\_ppl\,(.18)}, \textbf{var\_surprisal\,(.15)}, p75\_ppl\,(.11), mean\_surprisal\,(.07), type\_token\_ratio\,(.06) \\
-OLMo, $\tau$       & \textbf{p90\_ppl\,(.21)}, \textbf{var\_surprisal\,(.16)}, p75\_ppl\,(.12), mean\_surprisal\,(.09), type\_token\_ratio\,(.05) \\
-OLMo, top-$k$      & \textbf{p90\_ppl\,(.20)}, \textbf{var\_surprisal\,(.17)}, p75\_ppl\,(.10), mean\_surprisal\,(.07), mean\_ppl\,(.05) \\
-\bottomrule
-\end{tabular}}
-\end{table}
 
 \begin{figure}[t]
 \centering
@@ -105,7 +83,7 @@ We train dedicated binary RF classifiers (500 trees) for each adjacent pair, as 
 
 \paragraph{AUC decay and cross-model convergence.}
 For Pythia-1.4B (nucleus), AUC decays monotonically from $0.999$ (d0v1) to $0.683$ (d4v5); AUC-excess contraction ratios (0.80 at d1v2$\to$d2v3, 0.69 at d3v4$\to$d4v5) show convergence toward indistinguishability accelerates with depth (Figure~\ref{fig:auc_decay}).
-The d3-vs-d4 AUC clusters near $T{=}0.75$ for all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 converges to a narrow band ($0.681$--$0.684$, range $0.003$), suggesting an architecture-independent depth ceiling within the 1--1.5B nucleus setting.
+The d3-vs-d4 AUC clusters near $T{=}0.75$ for all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 converges to a narrow band ($0.681$--$0.684$, range $0.003$), consistent with an architecture-independent depth ceiling within the 1--1.5B nucleus setting.
 Bootstrap testing ($H_0{:}\, \mathrm{AUC} \leq 0.75$; Bonferroni-corrected for 3 comparisons, $\alpha{=}0.0167$) yields $p = 0.001$ (Pythia), $0.091$ (OLMo), $0.505$ (GPT-2~XL).
 
 \paragraph{EDD threshold sensitivity.}
