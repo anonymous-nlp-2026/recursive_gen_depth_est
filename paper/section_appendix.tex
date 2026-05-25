@@ -660,7 +660,8 @@ To isolate the scale effect from these artifacts, we run the full recursive gene
 \paragraph{Setup.}
 At each depth $k \in \{0, 1, 2, 3\}$, a fresh LoRA adapter ($r{=}16$, $\alpha{=}32$, dropout $0.05$, target modules \texttt{q\_proj}, \texttt{k\_proj}, \texttt{v\_proj}) is initialized on the base model and trained on $\mathcal{D}_{k-1}$ for 3 epochs (lr $2{\times}10^{-4}$, effective batch size 16 via $4 \times 4$ gradient accumulation, bfloat16 mixed precision), following the same protocol as the 1--1.5B benchmark (\S\ref{sec:method:benchmark}).
 Generation uses nucleus sampling ($p{=}0.95$), producing 5{,}000 passages per depth (20{,}000 total, matching the per-cell sample size of the primary benchmark).
-Feature extraction computes the standard 19-dimensional feature vector $\mathbf{f}(x)$ using the model's own token-level log-probabilities as the reference distribution, eliminating the cross-model reference artifact quantified in Table~\ref{tab:cross_ref_14b}.
+Feature extraction computes a 19-dimensional feature vector using the model's own token-level log-probabilities as the reference distribution, eliminating the cross-model reference artifact quantified in Table~\ref{tab:cross_ref_14b}.
+The self-reference feature set replaces lower perplexity percentiles (p10, p25) and \texttt{entropy\_of\_surprisal} with surprisal percentiles (\texttt{median\_surprisal}, \texttt{p75\_surprisal}, \texttt{p90\_surprisal}); all other features match Table~\ref{tab:features}.
 Classification uses the same 5-fold stratified Random Forest (200 trees, seed 42) as all other cells.
 
 \paragraph{Comparison to prior 7B experiments.}
