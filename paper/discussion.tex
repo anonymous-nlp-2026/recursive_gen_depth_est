@@ -7,5 +7,10 @@ End-to-end classifiers lag by 14--33\,pp (d2 F1\,${\leq}$\,0.26; Appendix~\ref{a
 The strategy effect (9.3\,pp) exceeds the model effect (7.2\,pp), so deployment requires conditioning on decoding configuration (\S\ref{sec:gen:crossstrategy}); the fixed reference model degrades by 4--11\,pp under cross-architecture alternatives (Appendix~\ref{app:ref_ablation}), and a 7B self-reference probe reveals a scale-dependent ceiling ($\mathrm{EDD}_{0.70}{=}0$; Appendix~\ref{app:qwen7b_selfref}).
 Accumulation experiments and cross-boundary chains (84.8\%; Appendix~\ref{app:accumulation_auc},~\ref{app:cross_boundary}) indicate that depth fingerprints are process-level rather than model-specific.
 
+\paragraph{Practical implications.}
+Ordinal depth labels enable tiered data curation that binary detection cannot support: a pipeline can retain first-generation text ($d{=}1$), which may still carry training value, while filtering $d{\geq}2$ content where collapse compounds.
+Since binary detectors collapse all $d{\geq}1$ with chance-level pairwise AUC between adjacent depths (\S\ref{sec:gen:baselines}), they cannot implement such depth-aware policies.
+The lightweight feature extraction (19 statistics from a single reference-model forward pass) makes inline deployment practical for provenance auditing.
+
 In summary, recursive generation leaves quantifiable statistical fingerprints that a lightweight pipeline resolves into ordinal depth classes ($\mathrm{EDD}_{0.70}{=}3$ in 8/9 cells), enabling more targeted data filtering than binary detection for provenance auditing and collapse monitoring.
-Open questions include reference-model alignment beyond 1.5B (\S\ref{sec:gen:crossscale}), paraphrase robustness, and finer-grained mixing (\S\ref{sec:gen:accumulation}).
+Open questions include reference-model alignment beyond 1.5B (\S\ref{sec:gen:crossscale}), paraphrase robustness, finer-grained mixing (\S\ref{sec:gen:accumulation}), and extension to instruction-tuned models.

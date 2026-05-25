@@ -75,6 +75,9 @@ Repetition & repeated 2/3/4-gram fractions & 3 \\
 \emph{Lexical diversity} (4 features): type--token ratio (TTR), hapax ratio, bigram/trigram entropy.
 \emph{Repetition} (3 features): repeated $n$-gram fractions for $n \in \{2, 3, 4\}$.
 
+The design targets the signal predicted by model collapse theory: recursive finetuning progressively erodes high-perplexity tokens \cite{shumailov2024_nature}, so upper quantiles (p75, p90) and kurtosis track tail erosion monotonically across depths (\S\ref{sec:atlas}).
+Surprisal variance captures a complementary effect, dominating at shallow depths where tail erosion is still subtle (\S\ref{sec:atlas:features}); lexical and repetition features improve cross-strategy robustness despite limited individual discriminative power (Appendix~\ref{app:feature_ablation}).
+
 \subsection{Effective Discriminable Depth}
 \label{sec:method:edd}
 
