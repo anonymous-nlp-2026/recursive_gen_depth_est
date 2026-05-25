@@ -81,7 +81,7 @@ Our depth estimation claims hold most strongly within-strategy or when the decod
 
 At 14B (Qwen2.5-14B), self-reference yields 50.8\% ($2{\times}$ chance, $\mathrm{EDD}_{0.70}{=}0$); switching to cross-reference (Pythia-1.4B) shifts accuracy by $-$6.8\,pp to 44.1\% but raises $\mathrm{EDD}_{0.70}$ to 2 for nucleus and temperature; reference-model choice is therefore a major confound in cross-scale comparisons (Appendix~\ref{app:cross_scale_full}).
 At matched 1.5B scale, instruction tuning preserves depth signal (Appendix~\ref{app:instruct_1p5b}).
-Cross-domain transfer to arXiv abstracts reaches 74.1\% (Appendix~\ref{app:domain_bias}).
+Cross-domain transfer to arXiv abstracts reaches 74.1\% (Appendix~\ref{app:cross_boundary}).
 
 \paragraph{Partial-mixing (accumulation).}
 \label{sec:gen:accumulation}
@@ -89,3 +89,4 @@ Real-world contamination mixes synthetic and human text rather than fully replac
 We test robustness under 25\% and 50\% synthetic mixing across three model--strategy cells (Table~\ref{tab:accum_auc}).
 At 25\% mixing, all three cells preserve $\mathrm{EDD}_{0.70}{=}3$ with 8--15\,pp accuracy attenuation relative to full replacement.
 At 50\% mixing, 2/3 cells retain $\mathrm{EDD}{=}3$; the sole failure (GPT-2~XL, d2v3 AUC\,=\,0.695) falls 0.5\,pp below threshold.
+Per-passage predictions remain composition-independent (${\leq}$2.4\,pp recall shift; Appendix~\ref{app:mixed_depth}).

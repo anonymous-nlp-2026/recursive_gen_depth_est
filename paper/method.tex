@@ -34,7 +34,7 @@ For depth extension experiments (\S\ref{sec:atlas}), we extend all three models 
 Starting from a Wikipedia subset ($\mathcal{D}_0$), each cycle: (1)~Low-Rank Adaptation (LoRA) finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$ ($r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, effective batch 16, 3 epochs, dropout $0.05$; fresh adapter from the base model at each depth; full protocol in Appendix~\ref{app:lora_protocol}; cross-seed replication in Appendix~\ref{app:seed_replication}); (2)~sampling 5{,}000 passages (max 512 tokens, beginning-of-sequence (BOS) seeded; Appendix~\ref{app:length_ablation}) under the specified strategy; (3)~$\mathcal{D}_k$ feeds the next cycle.
 Each depth is produced by a model trained on prior-depth data, not by sampling from the unmodified base model.
 BOS seeding may amplify depth signal; prompted-generation validation (Appendix~\ref{app:prompted_gen}) confirms signal persistence albeit attenuated ($-$13.8\,pp).
-No per-passage lineage exists across depths; cross-validation splits do not introduce leakage.
+No per-passage lineage exists across depths; cross-validation splits do not introduce leakage, and leave-one-group-out evaluation confirms classification targets depth rather than seed-article identity (Appendix~\ref{app:domain_bias}).
 
 \paragraph{Reference model.}
 All statistical features (\S\ref{sec:method:features}) use Pythia-1.4B as fixed reference model.
