@@ -90,13 +90,6 @@ Bootstrap testing ($H_0{:}\, \mathrm{AUC} \leq 0.75$; Bonferroni-corrected for 3
 Across the 9-cell benchmark (depths 0--3), all cells achieve $\mathrm{EDD}{=}3$ at $T{=}0.65$; at $T{=}0.70$, 8/9 cells; at $T{=}0.75$, 7/9; at $T{=}0.80$, 5/9.
 Top-$k$ configurations lose $\mathrm{EDD}{=}3$ first (Pythia top-$k$ at $T{=}0.70$, OLMo top-$k$ at $T{=}0.75$); d2-vs-d3 is the consistent bottleneck.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/fig_auc_decay.pdf}
-\caption{AUC decay curves for Pythia-1.4B (nucleus, depths 0--5) under three pipeline configurations: binary pairwise RF, 4-class RF, and 6-class RF. Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All curves converge below 0.70 at d4-vs-d5. Shaded bands: bootstrap 95\% CIs.}
-\label{fig:auc_decay}
-\end{figure}
-
 %% ----------------------------------------------------------------
 \subsection{Strategy-Dependent Trajectories}
 \label{sec:atlas:strategy}

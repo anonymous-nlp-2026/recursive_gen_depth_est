@@ -88,6 +88,12 @@ Cross-domain transfer to arXiv abstracts reaches 74.1\% (Appendix~\ref{app:cross
 \label{sec:gen:accumulation}
 Real-world contamination mixes synthetic and human text rather than fully replacing the training set.
 We test robustness under 25\% and 50\% synthetic mixing across three model--strategy cells (Table~\ref{tab:accum_auc}).
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_auc_decay.pdf}
+\caption{AUC decay curves for Pythia-1.4B (nucleus, depths 0--5) under three pipeline configurations: binary pairwise RF, 4-class RF, and 6-class RF. Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All curves converge below 0.70 at d4-vs-d5. Shaded bands: bootstrap 95\% CIs.}
+\label{fig:auc_decay}
+\end{figure}
 At 25\% mixing, all three cells preserve $\mathrm{EDD}_{0.70}{=}3$ with 8--15\,pp accuracy attenuation relative to full replacement.
 At 50\% mixing, 2/3 cells retain $\mathrm{EDD}{=}3$; the sole failure (GPT-2~XL, d2v3 AUC\,=\,0.695) falls 0.5\,pp below threshold.
 Per-passage predictions remain composition-independent (${\leq}$2.4\,pp recall shift; Appendix~\ref{app:mixed_depth}).
