@@ -13,8 +13,8 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, recall_score, roc_auc_score
 from sklearn.pipeline import Pipeline
 
-DATA_PATH = "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
-OUT_DIR = "/root/autodl-tmp/recursive_gen_depth_est/results/mlp_baseline"
+DATA_PATH = "./data/features_all.jsonl"
+OUT_DIR = "./results/mlp_baseline"
 RF_BASELINE_ACC = 0.782
 
 FEATURE_COLS = [

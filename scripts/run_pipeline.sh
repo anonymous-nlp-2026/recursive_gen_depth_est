@@ -13,12 +13,12 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 # 环境设置
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt

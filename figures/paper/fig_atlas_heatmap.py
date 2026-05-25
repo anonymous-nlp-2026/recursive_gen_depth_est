@@ -13,7 +13,7 @@ plt.rcParams.update({
     'savefig.pad_inches': 0.03,
 })
 
-with open('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json') as f:
+with open('artifacts/atlas_v2/feature_importance_9cell.json') as f:
     data = json.load(f)
 
 per_cell = data['per_cell']
@@ -77,7 +77,7 @@ ax.tick_params(top=False, bottom=True, labeltop=False, labelbottom=True, length=
 
 plt.tight_layout()
 
-out_base = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/figures/fig_atlas_heatmap'
+out_base = 'paper/figures/fig_atlas_heatmap'
 fig.savefig(f'{out_base}.pdf')
 fig.savefig(f'{out_base}.png')
 plt.close()

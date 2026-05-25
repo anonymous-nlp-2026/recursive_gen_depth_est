@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, accuracy_score, precision_score, recall_score
 from pathlib import Path
 
-BASE = Path("/root/autodl-tmp/recursive_gen_depth_est")
+BASE = Path(".")
 
 FEATURE_COLS = [
     "mean_ppl", "var_ppl", "skewness_ppl", "kurtosis_ppl",

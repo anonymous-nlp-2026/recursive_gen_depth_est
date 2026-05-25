@@ -27,7 +27,7 @@ FEATURE_NAMES = [
     "rep_2gram", "rep_3gram", "rep_4gram",
 ]
 
-PROJECT_DIR = "/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR = "."
 MODEL_PATH = os.path.join(PROJECT_DIR, "../models/pythia-1.4b")
 FEATURES_PATH = os.path.join(PROJECT_DIR, "data/features_all.jsonl")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "results/plan_015_wild_data")
@@ -179,7 +179,7 @@ def prepare_c4_passages(tokenizer, n_passages=5000, trunc_len=507, min_tokens=10
     print("Loading C4 validation split (streaming)...")
     ds = load_dataset(
         "allenai/c4", "en", split="validation", streaming=True,
-        cache_dir="/root/autodl-tmp/.hf_cache",
+        cache_dir="~/.cache/huggingface",
         trust_remote_code=True,
     )
 

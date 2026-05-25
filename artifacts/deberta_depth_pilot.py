@@ -18,7 +18,7 @@ import shutil
 import time
 import warnings
 
-os.environ.setdefault("HF_HOME", "/root/autodl-tmp/.hf_cache")
+os.environ.setdefault("HF_HOME", "~/.cache/huggingface")
 os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
 
 import numpy as np

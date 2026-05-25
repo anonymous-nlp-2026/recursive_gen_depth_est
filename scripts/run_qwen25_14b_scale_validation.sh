@@ -11,11 +11,11 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -36,7 +36,7 @@ echo "=== Started at $(date) ==="
 echo "=== CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES ==="
 
 # Download model if needed
-MODEL_DIR="/root/autodl-tmp/models/qwen25_14b"
+MODEL_DIR="./models/qwen25_14b"
 if [ ! -f "$MODEL_DIR/config.json" ]; then
     echo "[$(date)] Downloading Qwen/Qwen2.5-14B..."
     huggingface-cli download Qwen/Qwen2.5-14B --local-dir "$MODEL_DIR"

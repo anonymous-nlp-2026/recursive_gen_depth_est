@@ -60,7 +60,7 @@ N_FOLDS = 5
 N_ESTIMATORS = 100
 TOP_K_VALUES = [1, 2, 3, 5, 10, 15, 19]
 
-BASE_DIR = '/root/autodl-tmp/recursive_gen_depth_est'
+BASE_DIR = '.'
 OUT_DIR = os.path.join(BASE_DIR, 'results', 'feature_ablation')
 
 

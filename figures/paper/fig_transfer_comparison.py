@@ -79,7 +79,7 @@ ax2.annotate('', xy=(2.85, min(strat_acc)), xytext=(2.85, max(strat_acc)),
 ax2.text(2.95, (min(strat_acc)+max(strat_acc))/2, f'Δ={gap_strat:.1f}pp',
          ha='left', va='center', fontsize=7, color='#333333')
 
-out_base = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/figures/fig_transfer_comparison'
+out_base = 'paper/figures/fig_transfer_comparison'
 fig.savefig(f'{out_base}.pdf')
 fig.savefig(f'{out_base}.png')
 plt.close(fig)

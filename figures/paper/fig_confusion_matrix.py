@@ -65,7 +65,7 @@ for ax, (cm, title) in zip(axes, panels):
     ax.set_title(title)
     ax.tick_params(length=0)
 
-out_base = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_confusion_matrix'
+out_base = 'figures/paper/fig_confusion_matrix'
 fig.savefig(f'{out_base}.pdf')
 fig.savefig(f'{out_base}.png')
 plt.close(fig)

@@ -13,7 +13,7 @@ from sklearn.metrics import roc_auc_score
 SEED = 42
 np.random.seed(SEED)
 
-BASE = "/root/autodl-tmp/recursive_gen_depth_est"
+BASE = "."
 DATA_DIR = os.path.join(BASE, "data")
 OUTPUT_DIR = os.path.join(BASE, "results/d4_extension_pythia")
 

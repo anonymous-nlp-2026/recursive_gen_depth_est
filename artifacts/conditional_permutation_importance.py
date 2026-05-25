@@ -19,7 +19,7 @@ from collections import OrderedDict
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.inspection import permutation_importance
 
-BASE_DIR = '/root/autodl-tmp/recursive_gen_depth_est'
+BASE_DIR = '.'
 OUT_DIR = os.path.join(BASE_DIR, 'results', 'conditional_pi')
 os.makedirs(OUT_DIR, exist_ok=True)
 

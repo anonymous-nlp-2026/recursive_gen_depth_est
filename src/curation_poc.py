@@ -20,13 +20,13 @@ from pathlib import Path
 
 import numpy as np
 
-PROJECT_ROOT = "/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_ROOT = "."
 DATA_DIR = f"{PROJECT_ROOT}/data"
 FEATURES_PATH = f"{DATA_DIR}/features_all.jsonl"
 OUTPUT_DATA_DIR = f"{DATA_DIR}/curation_poc"
 RESULT_DIR = f"{PROJECT_ROOT}/results/curation_poc"
 MODEL_NAME = "EleutherAI/pythia-410m"
-MODEL_CACHE = "/root/autodl-tmp/models/pythia-410m"
+MODEL_CACHE = "./models/pythia-410m"
 
 SAMPLES_PER_DEPTH = 2500
 NUM_DEPTHS = 4

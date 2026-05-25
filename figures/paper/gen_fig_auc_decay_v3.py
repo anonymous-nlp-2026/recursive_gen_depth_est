@@ -90,7 +90,7 @@ ax.grid(True, alpha=0.2, zorder=0)
 
 plt.tight_layout()
 
-outdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper'
+outdir = 'figures/paper'
 plt.savefig(f'{outdir}/fig_auc_decay.pdf')
 plt.savefig(f'{outdir}/fig_auc_decay.png')
 plt.close()

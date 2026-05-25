@@ -13,7 +13,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
-ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est")
+ROOT = Path(".")
 OUT_DIR = ROOT / "results" / "feature_ablation"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 

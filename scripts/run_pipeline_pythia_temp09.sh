@@ -10,7 +10,7 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 GPU=${GPU:-0}
@@ -19,7 +19,7 @@ CKPT_DIR="checkpoints/pythia_temp09"
 LOG_FILE="logs/pipeline_pythia_temp09.log"
 
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -29,7 +29,7 @@ if [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then
     conda activate base
 fi
 
-MODEL_PATH="/root/autodl-tmp/models/pythia-1.4b"
+MODEL_PATH="./models/pythia-1.4b"
 TARGET_MODULES="query_key_value"
 
 mkdir -p "$DATA_DIR" "$CKPT_DIR" logs

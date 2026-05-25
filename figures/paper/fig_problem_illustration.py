@@ -178,7 +178,7 @@ ax.plot([4.3, 4.3], [comp_y - 0.12, comp_y + 0.12],
 ax.text(7.8, comp_y, r'Ours:  $\hat{d} \in \{0, 1, \ldots, K\}$  (ordinal depth estimation)',
         ha='center', va='center', fontsize=7.5, color='#2980B9', fontweight='bold')
 
-out_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/figures'
+out_dir = 'paper/figures'
 fig.savefig(f'{out_dir}/fig_problem_illustration.pdf')
 fig.savefig(f'{out_dir}/fig_problem_illustration.png')
 plt.close(fig)

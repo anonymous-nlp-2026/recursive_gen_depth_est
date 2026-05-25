@@ -11,12 +11,12 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 # 环境设置
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -27,7 +27,7 @@ if [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then
     conda activate base
 fi
 
-MODEL_PATH="/root/autodl-tmp/models/olmo-1b"
+MODEL_PATH="./models/olmo-1b"
 TARGET_MODULES="q_proj,v_proj"
 DATA_DIR="data/olmo"
 CKPT_DIR="checkpoints/olmo"
@@ -42,7 +42,7 @@ python scripts/lora_finetune.py \
     --input_data $DATA_DIR/depth_0.jsonl \
     --output_dir $CKPT_DIR/lora_depth_0 \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules $TARGET_MODULES \
     --gpu 0
 
@@ -52,7 +52,7 @@ python scripts/generate_next_depth.py \
     --input_data $DATA_DIR/depth_0.jsonl \
     --output_path $DATA_DIR/depth_1.jsonl \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_depth 1 --gpu 0
 
 echo "=== Step 3: LoRA finetune on depth-1 ==="
@@ -60,7 +60,7 @@ python scripts/lora_finetune.py \
     --input_data $DATA_DIR/depth_1.jsonl \
     --output_dir $CKPT_DIR/lora_depth_1 \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules $TARGET_MODULES \
     --gpu 0
 
@@ -70,7 +70,7 @@ python scripts/generate_next_depth.py \
     --input_data $DATA_DIR/depth_1.jsonl \
     --output_path $DATA_DIR/depth_2.jsonl \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_depth 2 --gpu 0
 
 echo "=== Step 5: LoRA finetune on depth-2 ==="
@@ -78,7 +78,7 @@ python scripts/lora_finetune.py \
     --input_data $DATA_DIR/depth_2.jsonl \
     --output_dir $CKPT_DIR/lora_depth_2 \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules $TARGET_MODULES \
     --gpu 0
 
@@ -88,7 +88,7 @@ python scripts/generate_next_depth.py \
     --input_data $DATA_DIR/depth_2.jsonl \
     --output_path $DATA_DIR/depth_3.jsonl \
     --model_name $MODEL_PATH \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_depth 3 --gpu 0
 
 echo "=== OLMo-1B Pipeline complete! ==="

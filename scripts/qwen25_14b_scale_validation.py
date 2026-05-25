@@ -29,8 +29,8 @@ from transformers import (
 from peft import LoraConfig, PeftModel, get_peft_model
 
 SEED = 42
-MODEL_PATH = "/root/autodl-tmp/models/qwen25_14b"
-PROJECT_DIR = "/root/autodl-tmp/recursive_gen_depth_est"
+MODEL_PATH = "./models/qwen25_14b"
+PROJECT_DIR = "."
 DATA_DIR = os.path.join(PROJECT_DIR, "data/qwen25_14b")
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints/qwen25_14b")
 RESULTS_DIR = os.path.join(PROJECT_DIR, "results/qwen25_14b_scale")

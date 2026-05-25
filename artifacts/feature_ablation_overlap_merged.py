@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 
-PROJECT_ROOT = "/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_ROOT = "."
 
 CELLS = {
     "pythia_nucleus": {

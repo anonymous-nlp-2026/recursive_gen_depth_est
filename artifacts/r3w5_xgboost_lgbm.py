@@ -18,7 +18,7 @@ FEATURE_NAMES = [
     "rep_2gram", "rep_3gram", "rep_4gram",
 ]
 
-ROOT = "/root/autodl-tmp/recursive_gen_depth_est"
+ROOT = "."
 DATA_PATH = os.path.join(ROOT, "data/features_all.jsonl")
 OUT_DIR = os.path.join(ROOT, "results/r3w5_baselines")
 

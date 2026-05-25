@@ -10,11 +10,11 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -27,7 +27,7 @@ fi
 export CUDA_VISIBLE_DEVICES=1
 
 SEED=43
-MODEL_PATH="/root/autodl-tmp/models/gpt2-xl"
+MODEL_PATH="./models/gpt2-xl"
 TARGET_MODULES="c_attn,c_proj"
 NUM_SAMPLES=5000
 DATA_DIR="data/gpt2xl_seed43"
@@ -49,7 +49,7 @@ python scripts/lora_finetune.py \
     --input_data "$DATA_DIR/depth_0.jsonl" \
     --output_dir "$CKPT_DIR/lora_depth_0" \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules "$TARGET_MODULES" \
     --seed $SEED \
     --lora_rank 16 \
@@ -62,7 +62,7 @@ python scripts/generate_next_depth.py \
     --output_path "$DATA_DIR/depth_1.jsonl" \
     --target_depth 1 \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --num_samples $NUM_SAMPLES \
     --top_p 0.95 \
     --decoding_strategy nucleus \
@@ -74,7 +74,7 @@ python scripts/lora_finetune.py \
     --input_data "$DATA_DIR/depth_1.jsonl" \
     --output_dir "$CKPT_DIR/lora_depth_1" \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules "$TARGET_MODULES" \
     --seed $SEED \
     --lora_rank 16 \
@@ -87,7 +87,7 @@ python scripts/generate_next_depth.py \
     --output_path "$DATA_DIR/depth_2.jsonl" \
     --target_depth 2 \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --num_samples $NUM_SAMPLES \
     --top_p 0.95 \
     --decoding_strategy nucleus \
@@ -99,7 +99,7 @@ python scripts/lora_finetune.py \
     --input_data "$DATA_DIR/depth_2.jsonl" \
     --output_dir "$CKPT_DIR/lora_depth_2" \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --target_modules "$TARGET_MODULES" \
     --seed $SEED \
     --lora_rank 16 \
@@ -112,7 +112,7 @@ python scripts/generate_next_depth.py \
     --output_path "$DATA_DIR/depth_3.jsonl" \
     --target_depth 3 \
     --model_name "$MODEL_PATH" \
-    --model_cache /root/autodl-tmp/.hf_cache \
+    --model_cache ~/.cache/huggingface \
     --num_samples $NUM_SAMPLES \
     --top_p 0.95 \
     --decoding_strategy nucleus \

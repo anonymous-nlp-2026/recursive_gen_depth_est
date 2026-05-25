@@ -24,7 +24,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from tqdm import tqdm
 
-os.environ.setdefault("HF_HOME", "/root/autodl-tmp/.hf_cache")
+os.environ.setdefault("HF_HOME", "~/.cache/huggingface")
 os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
 for k in ("REQUESTS_CA_BUNDLE", "SSL_CERT_FILE"):
     os.environ.setdefault(k, "/etc/ssl/certs/ca-certificates.crt")
@@ -37,8 +37,8 @@ FEATURE_NAMES = [
     "rep_2gram", "rep_3gram", "rep_4gram",
 ]
 
-PROJECT_DIR = "/root/autodl-tmp/recursive_gen_depth_est"
-MODEL_PATH = "/root/autodl-tmp/models/pythia-1.4b"
+PROJECT_DIR = "."
+MODEL_PATH = "./models/pythia-1.4b"
 TRAIN_FEATURES = os.path.join(PROJECT_DIR, "data/features_all.jsonl")
 REDPAJAMA_GZ = os.path.join(PROJECT_DIR, "data/redpajama_en_head.json.gz")
 C4_CSV = os.path.join(PROJECT_DIR, "results/wild_features/c4_10k_features.csv")

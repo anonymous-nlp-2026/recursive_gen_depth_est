@@ -30,7 +30,7 @@ CELLS = {
     "olmo_topk50": "results/olmo_topk50/features.jsonl",
 }
 
-ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est")
+ROOT = Path(".")
 
 
 def load_cell(path):

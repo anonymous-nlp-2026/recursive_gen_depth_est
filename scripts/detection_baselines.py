@@ -38,8 +38,8 @@ GRID_CELLS = {
 }
 
 MODEL_PATHS = {
-    "gpt2xl": "/root/autodl-tmp/models/gpt2-xl",
-    "pythia": "/root/autodl-tmp/models/pythia-1.4b",
+    "gpt2xl": "./models/gpt2-xl",
+    "pythia": "./models/pythia-1.4b",
 }
 
 NUM_DEPTHS = 4

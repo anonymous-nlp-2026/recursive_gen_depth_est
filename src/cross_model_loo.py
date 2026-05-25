@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score, recall_score
 from pathlib import Path
 import time
 
-BASE = Path("/root/autodl-tmp/recursive_gen_depth_est")
+BASE = Path(".")
 
 CELL_PATHS = {
     "pythia_nucleus095": BASE / "data" / "features_all.jsonl",

@@ -26,9 +26,9 @@ from peft import LoraConfig, get_peft_model, PeftModel
 from torch.utils.data import Dataset
 from tqdm import tqdm
 
-MODEL_PATH = "/root/autodl-tmp/models/gpt2-xl"
-REF_MODEL_PATH = "/root/autodl-tmp/models/pythia-1.4b"
-PROJECT_DIR = "/root/autodl-tmp/recursive_gen_depth_est"
+MODEL_PATH = "./models/gpt2-xl"
+REF_MODEL_PATH = "./models/pythia-1.4b"
+PROJECT_DIR = "."
 DATA_DIR = os.path.join(PROJECT_DIR, "data/prompted_gen")
 CKPT_DIR = os.path.join(PROJECT_DIR, "checkpoints/prompted_gen")
 RESULTS_DIR = os.path.join(PROJECT_DIR, "results/prompted_generation")
@@ -331,7 +331,7 @@ def main():
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
-    os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+    os.environ["HF_HOME"] = "~/.cache/huggingface"
     os.environ["HF_HUB_DISABLE_XET"] = "1"
     torch.manual_seed(SEED)
     device = torch.device("cuda:0")

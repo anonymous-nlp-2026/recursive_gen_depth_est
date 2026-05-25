@@ -128,7 +128,7 @@ def evaluate_subset(X, y, feature_names, label):
 
 
 def main():
-    base = "/root/autodl-tmp/recursive_gen_depth_est/data"
+    base = "./data"
 
     X_full, y_full, fn_full = load_features(f"{base}/features_3class.jsonl", exclude_depth0=False)
     evaluate_subset(X_full, y_full, fn_full, "FULL d1-d3")

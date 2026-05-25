@@ -22,8 +22,8 @@ plt.rcParams.update({
     'lines.linewidth': 1.8,
 })
 
-data_path = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/matrix_data.json')
-out_dir = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper')
+data_path = Path('artifacts/atlas_v2/matrix_data.json')
+out_dir = Path('figures/paper')
 
 with open(data_path) as f:
     data = json.load(f)

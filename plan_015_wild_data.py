@@ -31,8 +31,8 @@ FEATURE_NAMES = [
     "rep_2gram", "rep_3gram", "rep_4gram",
 ]
 
-PROJECT_DIR = "/root/autodl-tmp/recursive_gen_depth_est"
-MODEL_PATH = "/root/autodl-tmp/models/pythia-1.4b"
+PROJECT_DIR = "."
+MODEL_PATH = "./models/pythia-1.4b"
 FEATURES_PATH = os.path.join(PROJECT_DIR, "data/features_all.jsonl")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "results/plan_015_wild_data")
 
@@ -182,7 +182,7 @@ def prepare_wikitext_passages(tokenizer, n_passages=5000, trunc_len=498, seed=42
 
     print("Loading WikiText-103 test set...")
     ds = load_dataset("wikitext", "wikitext-103-raw-v1", split="test",
-                       cache_dir="/root/autodl-tmp/.hf_cache")
+                       cache_dir="~/.cache/huggingface")
 
     all_tokens = []
     for item in ds:

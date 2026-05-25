@@ -14,7 +14,7 @@ def parse_args():
     p.add_argument("--input_data", required=True, help="Previous depth data (for seed_id list)")
     p.add_argument("--output_path", required=True, help="Output jsonl path")
     p.add_argument("--model_name", default="Qwen/Qwen2.5-1.5B", help="Base model name")
-    p.add_argument("--model_cache", default="/root/autodl-tmp/.hf_cache", help="Model cache dir")
+    p.add_argument("--model_cache", default="~/.cache/huggingface", help="Model cache dir")
     p.add_argument("--target_depth", type=int, required=True, help="Target depth (1, 2, 3)")
     p.add_argument("--num_samples", type=int, default=5000, help="Number of samples to generate")
     p.add_argument("--max_new_tokens", type=int, default=512)

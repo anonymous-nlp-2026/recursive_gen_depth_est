@@ -41,7 +41,7 @@ def parse_args():
     p.add_argument("--input_data", required=True, help="Input jsonl path")
     p.add_argument("--output_dir", required=True, help="LoRA adapter save path")
     p.add_argument("--model_name", default="EleutherAI/pythia-1.4b", help="Base model name")
-    p.add_argument("--model_cache", default="/root/autodl-tmp/models/pythia-1.4b", help="Model cache dir")
+    p.add_argument("--model_cache", default="./models/pythia-1.4b", help="Model cache dir")
     p.add_argument("--target_modules", default="query_key_value", help="Comma-separated LoRA target module names")
     p.add_argument("--epochs", type=int, default=3)
     p.add_argument("--lr", type=float, default=2e-4)

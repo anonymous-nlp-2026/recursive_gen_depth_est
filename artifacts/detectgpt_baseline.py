@@ -36,8 +36,8 @@ random.seed(SEED)
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 
-DATA_ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est/data")
-RESULT_DIR = Path("/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline")
+DATA_ROOT = Path("./data")
+RESULT_DIR = Path("./results/detectgpt_baseline")
 RESULT_DIR.mkdir(parents=True, exist_ok=True)
 
 CELLS = [

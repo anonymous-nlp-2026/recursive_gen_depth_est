@@ -81,7 +81,7 @@ ax.set_xlim(-0.3, 4.5)
 
 ax.legend(loc='upper right', frameon=True, framealpha=0.9, edgecolor='#CCCCCC')
 
-out_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper'
+out_dir = 'figures/paper'
 fig.savefig(f'{out_dir}/fig_auc_decay.pdf')
 fig.savefig(f'{out_dir}/fig_auc_decay.png')
 plt.close(fig)

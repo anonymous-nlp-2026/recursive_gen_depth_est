@@ -10,7 +10,7 @@ if [ -n "${AML_EXP_ID:-}" ]; then
     trap _aml_exit_handler EXIT
 fi
 
-PROJECT_DIR="/root/autodl-tmp/recursive_gen_depth_est"
+PROJECT_DIR="."
 cd $PROJECT_DIR
 
 GPU=${GPU:-0}
@@ -19,7 +19,7 @@ CKPT_DIR="checkpoints/gpt2xl_temp09"
 LOG_FILE="logs/pipeline_gpt2xl_temp09.log"
 
 source /etc/network_turbo 2>/dev/null || true
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=~/.cache/huggingface
 export HF_HUB_DISABLE_XET=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -29,7 +29,7 @@ if [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then
     conda activate base
 fi
 
-MODEL_PATH="/root/autodl-tmp/models/gpt2-xl"
+MODEL_PATH="./models/gpt2-xl"
 TARGET_MODULES="c_attn,c_proj"
 
 mkdir -p "$DATA_DIR" "$CKPT_DIR" logs
@@ -41,7 +41,7 @@ echo "=== Started at $(date) ==="
 echo "=== GPU: $GPU ==="
 
 # Step 1 skipped: depth-0 adapter is decoding-strategy-independent, reuse nucleus version
-NUCLEUS_ADAPTER="/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/lora_depth_0"
+NUCLEUS_ADAPTER="./checkpoints/gpt2xl/lora_depth_0"
 if [ ! -d "$NUCLEUS_ADAPTER" ]; then
     echo "ERROR: nucleus depth-0 adapter not found at $NUCLEUS_ADAPTER" >&2
     exit 1

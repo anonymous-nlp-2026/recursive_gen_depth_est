@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est")
+ROOT = Path(".")
 OUT = ROOT / "artifacts" / "atlas"
 
 CHAINS = {

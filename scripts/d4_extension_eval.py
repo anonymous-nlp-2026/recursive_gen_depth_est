@@ -19,9 +19,9 @@ from tqdm import tqdm
 SEED = 42
 np.random.seed(SEED)
 
-BASE = "/root/autodl-tmp/recursive_gen_depth_est"
+BASE = "."
 DATA_DIR = os.path.join(BASE, "data/gpt2xl")
-REF_MODEL = "/root/autodl-tmp/models/pythia-1.4b"
+REF_MODEL = "./models/pythia-1.4b"
 OUTPUT_DIR = os.path.join(BASE, "results/d4_extension_gpt2xl")
 EXISTING_FEATURES = os.path.join(DATA_DIR, "features.jsonl")
 D4_TEXT = os.path.join(DATA_DIR, "depth_4.jsonl")

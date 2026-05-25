@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 from scipy import stats
 
-ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est")
+ROOT = Path(".")
 DATA_FILE = ROOT / "artifacts" / "atlas" / "atlas_v2_data.json"
 OUT_FILE = ROOT / "artifacts" / "atlas" / "atlas_v2_results.json"
 

@@ -25,8 +25,8 @@ warnings.filterwarnings("ignore")
 # CUDA_VISIBLE_DEVICES controlled externally
 DEVICE = torch.device("cuda:0")
 
-DATA_ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est/data")
-OUTPUT_DIR = Path("/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline")
+DATA_ROOT = Path("./data")
+OUTPUT_DIR = Path("./results/mink_prob_baseline")
 
 CELL_DIRS = {
     "pythia_nucleus": DATA_ROOT,
@@ -262,9 +262,9 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     print("Loading GPT-2 XL...")
-    tokenizer = GPT2TokenizerFast.from_pretrained("/root/autodl-tmp/models/gpt2-xl")
+    tokenizer = GPT2TokenizerFast.from_pretrained("./models/gpt2-xl")
     tokenizer.pad_token = tokenizer.eos_token
-    model = GPT2LMHeadModel.from_pretrained("/root/autodl-tmp/models/gpt2-xl").to(DEVICE)
+    model = GPT2LMHeadModel.from_pretrained("./models/gpt2-xl").to(DEVICE)
     model.eval()
 
     all_results = {}

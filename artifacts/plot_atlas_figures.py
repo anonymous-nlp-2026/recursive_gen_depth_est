@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import confusion_matrix as cm_func
 
-BASE = Path('/root/autodl-tmp/recursive_gen_depth_est')
+BASE = Path('.')
 OUT = BASE / 'artifacts' / 'figures'
 OUT.mkdir(parents=True, exist_ok=True)
 

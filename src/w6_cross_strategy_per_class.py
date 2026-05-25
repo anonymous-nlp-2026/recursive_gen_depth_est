@@ -12,7 +12,7 @@ from sklearn.metrics import (
 )
 from pathlib import Path
 
-BASE = Path("/root/autodl-tmp/recursive_gen_depth_est")
+BASE = Path(".")
 
 CELL_PATHS = {
     "pythia_nucleus095": BASE / "data" / "features_all.jsonl",

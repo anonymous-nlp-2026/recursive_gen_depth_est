@@ -22,7 +22,7 @@ from learned_estimator_utils import (
     NUM_FEATURES, NUM_CLASSES, DEPTH_LABELS,
 )
 
-BASE = '/root/autodl-tmp/recursive_gen_depth_est'
+BASE = '.'
 OUT_DIR = os.path.join(BASE, 'results', 'learned_estimator')
 
 

@@ -15,7 +15,7 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.metrics import accuracy_score, classification_report
 import time
 
-ROOT = Path("/root/autodl-tmp/recursive_gen_depth_est")
+ROOT = Path(".")
 OUT_DIR = ROOT / "results" / "w2_domain_bias"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 

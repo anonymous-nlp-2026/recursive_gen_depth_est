@@ -13,7 +13,7 @@ Output: {method}_classification_report.json, {method}_pairwise_auc.json, {method
 
 Usage:
   python baseline_ce_classification.py --data_dirs data/  # default: deberta-v3-large
-  python baseline_ce_classification.py --data_dirs data/ --model_name microsoft/deberta-v3-base --model_path /root/autodl-tmp/models/deberta-v3-base
+  python baseline_ce_classification.py --data_dirs data/ --model_name microsoft/deberta-v3-base --model_path ./models/deberta-v3-base
   python baseline_ce_classification.py --data_dirs data/ --dry_run  # CPU, 2 steps
 """
 
@@ -148,7 +148,7 @@ def main():
     parser = argparse.ArgumentParser(description="Standard CE Classification baseline (DeBERTa)")
     add_common_args(parser)
     parser.add_argument("--model_name", default="microsoft/deberta-v3-large")
-    parser.add_argument("--model_path", default="/root/autodl-tmp/models/deberta-v3-large")
+    parser.add_argument("--model_path", default="./models/deberta-v3-large")
     parser.add_argument("--epochs", type=int, default=5)
     parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=2e-5)

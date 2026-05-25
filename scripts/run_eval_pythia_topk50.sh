@@ -3,11 +3,11 @@ set -e
 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
 GPU=${GPU:-0}
 export CUDA_VISIBLE_DEVICES=$GPU
-cd /root/autodl-tmp/recursive_gen_depth_est
+cd .
 
 DATA_DIR=data/pythia_topk50
 RESULTS_DIR=results/pythia_topk50
-MODEL_PATH=/root/autodl-tmp/models/pythia-1.4b
+MODEL_PATH=./models/pythia-1.4b
 LOG_FILE=logs/eval_pythia_topk50.log
 mkdir -p "$RESULTS_DIR/three_class" "$RESULTS_DIR/three_class_filtered" logs
 
