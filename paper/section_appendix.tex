@@ -64,7 +64,7 @@ For each cell, 1{,}000 bootstrap resamples produce a rank distribution per featu
 
 \paragraph{Results.}
 Table~\ref{tab:conditional_pi} summarizes the top-5 features by mean CPI across cells.
-\texttt{var\_surprisal} (avg rank 1.4, CPI\,=\,0.260) and \texttt{p90\_ppl} (avg rank 1.7, CPI\,=\,0.238) are the top-2 in 8/9 cells, with bootstrap rank CI widths of 0.44 and 0.22---both $\leq 0.5$, indicating near-invariant rankings across resamples.
+\texttt{var\_surprisal} (avg rank 1.4, CPI\,=\,0.260) and \texttt{p90\_ppl} (avg rank 1.7, CPI\,=\,0.238) are the top-2 in 8/9 cells, with bootstrap rank CI widths of 0.44 and 0.22 (both $\leq 0.5$), indicating near-invariant rankings across resamples.
 Ranks 3--5 are \texttt{p75\_ppl} (CPI\,=\,0.063, CI width\,=\,0.78), \texttt{p50\_ppl} (0.016, width\,=\,2.67), and a cell-dependent set (\texttt{p25\_ppl} or \texttt{mean\_ppl}); rank stability decreases beyond the top-2, with CI widths of 2.7--3.7 for ranks 4--5.
 
 \begin{table}[h]
@@ -95,7 +95,7 @@ Lexical family & 9.7 & 0.004 & --- \\
 Two exceptions exist among GPT-2~XL cells: in temperature sampling, \texttt{p90\_ppl} (CPI\,=\,0.419) exceeds \texttt{var\_surprisal} (0.093) while both remain in the top-2; in top-$k$ sampling, \texttt{p90\_ppl} (0.475) and \texttt{p75\_ppl} (0.127) push \texttt{var\_surprisal} to rank~3 (0.037), the only cell where it exits the top-2.
 Both reversals are consistent with the Gini rankings for these cells (Table~\ref{tab:feature_importance}).
 
-At the family level, surprisal (avg CPI\,=\,0.089, rank\,=\,7.3) and perplexity (0.039, rank\,=\,7.5) are closely matched, while lexical features (0.004, rank\,=\,9.7) contribute minimally---consistent with the group ablation in \S\ref{sec:atlas:features}.
+At the family level, surprisal (avg CPI\,=\,0.089, rank\,=\,7.3) and perplexity (0.039, rank\,=\,7.5) are closely matched, while lexical features (0.004, rank\,=\,9.7) contribute minimally, consistent with the group ablation in \S\ref{sec:atlas:features}.
 
 \paragraph{Consistency with Gini rankings.}
 CPI and Gini rankings agree on the dominant feature (\texttt{var\_surprisal} or \texttt{p90\_ppl}) in 8/9 cells; the sole disagreement (GPT-2~XL top-$k$) involves a swap between rank-2 and rank-3 features.

@@ -9,14 +9,14 @@ All assume depth is known a priori; we address the inverse problem of estimating
 
 \paragraph{AI Text Detection.}
 The detection literature \cite{wu2025_detection_survey} spans statistical \cite{mitchell2023_detectgpt,fast_detectgpt2024,binoculars2024,gehrmann2019_gltr,verma2024_ghostbuster}, geometric \cite{tulchinskii2023_intrinsic_dim}, and watermarking \cite{kirchenbauer2023_watermark} methods, with known limits \cite{sadasivan2023_paraphrase,pudasaini2026_detection_fails}.
-\citet{bevendorff2025_two_paradigms} distinguish attribution from verification; all remain binary, whereas our approach outputs ordinal depth labels along a third axis---recursive iteration.
+\citet{bevendorff2025_two_paradigms} distinguish attribution from verification; all remain binary, whereas our approach outputs ordinal depth labels along a third axis, recursive iteration.
 
 \paragraph{Membership Inference and Data Provenance.}
 Training data extraction \cite{carlini2021_extracting} motivates provenance pipelines; Min-K\% Prob \cite{shi2024_minkprob} and Datamodels \cite{ilyas2022datamodels} address membership inference but remain binary; watermarks \cite{christ2024_undetectable} require generator cooperation; TROVE \cite{zhu2025_trove} traces sentence-level provenance but targets source attribution.
 Depth estimation occupies a distinct niche: ordinal, retroactive, and cooperation-free.
 
 \paragraph{Adjacent Tasks.}
-EditLens \cite{editlens2026} estimates editing extent; \citet{uchendu2020_attribution} classify \emph{which} model generated text; \citet{mohamed2025_broken_telephone} characterize \emph{how} text degrades under iterative generation---none address ordinal depth.
+EditLens \cite{editlens2026} estimates editing extent; \citet{uchendu2020_attribution} classify \emph{which} model generated text; \citet{mohamed2025_broken_telephone} characterize \emph{how} text degrades under iterative generation; none address ordinal depth.
 
 \paragraph{Ordinal Classification.}
 CORAL \cite{coral2020} and CLOC \cite{cloc2025} enforce ordinal rank consistency via ordered binary tasks and contrastive losses, respectively; we adopt both as baselines (\S\ref{sec:generalization}).
