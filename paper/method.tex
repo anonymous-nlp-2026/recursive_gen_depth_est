@@ -31,7 +31,7 @@ The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--st
 For depth extension experiments (\S\ref{sec:atlas}), we extend all three models under nucleus sampling to d0--d5.
 
 \paragraph{Generation pipeline.}
-Starting from a Wikipedia subset ($\mathcal{D}_0$), each cycle: (1)~LoRA finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$ ($r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, effective batch 16, 3 epochs, dropout $0.05$; fresh adapter from the base model at each depth; full protocol in Appendix~\ref{app:lora_protocol}; cross-seed replication in Appendix~\ref{app:seed_replication}); (2)~sampling 5{,}000 passages (max 512 tokens, beginning-of-sequence (BOS) seeded; Appendix~\ref{app:length_ablation}) under the specified strategy; (3)~$\mathcal{D}_k$ feeds the next cycle.
+Starting from a Wikipedia subset ($\mathcal{D}_0$), each cycle: (1)~Low-Rank Adaptation (LoRA) finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$ ($r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, effective batch 16, 3 epochs, dropout $0.05$; fresh adapter from the base model at each depth; full protocol in Appendix~\ref{app:lora_protocol}; cross-seed replication in Appendix~\ref{app:seed_replication}); (2)~sampling 5{,}000 passages (max 512 tokens, beginning-of-sequence (BOS) seeded; Appendix~\ref{app:length_ablation}) under the specified strategy; (3)~$\mathcal{D}_k$ feeds the next cycle.
 Each depth is produced by a model trained on prior-depth data, not by sampling from the unmodified base model.
 BOS seeding may amplify depth signal; prompted-generation validation (Appendix~\ref{app:prompted_gen}) confirms signal persistence albeit attenuated ($-$13.8\,pp).
 No per-passage lineage exists across depths; cross-validation splits do not introduce leakage.
@@ -44,7 +44,7 @@ Alternative references yield 67--79\%, all exceeding $2.5{\times}$ chance (Limit
 \subsection{Statistical Feature Design}
 \label{sec:method:features}
 
-We extract a feature vector $\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\S\ref{sec:atlas:features}) shows the top 5 achieve 97.6\% of full-set performance, and variance inflation analysis reveals VIF${>}$10 for 14--16 features; effective independent dimensionality is ${\approx}$4--5.
+We extract a feature vector $\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\S\ref{sec:atlas:features}) shows the top 5 achieve 97.6\% of full-set performance, and Variance Inflation Factor (VIF) analysis reveals VIF${>}$10 for 14--16 features; effective independent dimensionality is ${\approx}$4--5.
 The features fall into four categories (Table~\ref{tab:features}).
 
 \begin{table}[t]
@@ -72,7 +72,7 @@ Repetition & repeated 2/3/4-gram fractions & 3 \\
 
 \emph{Perplexity statistics} (9 features) capture the per-token perplexity distribution via moments and quantiles (p10--p90); tail quantiles are especially informative as recursive finetuning erodes the high-perplexity tail (\S\ref{sec:atlas}).
 \emph{Surprisal statistics} (3 features): mean, variance, and entropy of $-\log p(\text{token})$.
-\emph{Lexical diversity} (4 features): type--token ratio, hapax ratio, bigram/trigram entropy.
+\emph{Lexical diversity} (4 features): type--token ratio (TTR), hapax ratio, bigram/trigram entropy.
 \emph{Repetition} (3 features): repeated $n$-gram fractions for $n \in \{2, 3, 4\}$.
 
 \subsection{Effective Discriminable Depth}
@@ -83,7 +83,7 @@ We propose the \emph{Effective Discriminable Depth} (EDD) as an operational meas
 
 \paragraph{Pairwise discriminability.}
 Let $\mathcal{D} = \{0, 1, \dots, K\}$ denote the depth set and $T \in (0.5, 1.0]$ a discrimination threshold.
-For each adjacent pair $(d, d{+}1)$, we define the pairwise discriminability $\mathrm{AUC}(d, d{+}1)$ as the area under the ROC curve of a dedicated binary Random Forest classifier (500 trees, $\lfloor\sqrt{19}\rfloor$ candidate features per split) trained on class-balanced data from $\mathbf{f}(x)$ (\S\ref{sec:method:features}) to distinguish depth-$d$ from depth-$(d{+}1)$ samples, evaluated via 5-fold stratified cross-validation.
+For each adjacent pair $(d, d{+}1)$, we define the pairwise discriminability $\mathrm{AUC}(d, d{+}1)$ as the area under the receiver operating characteristic (ROC) curve of a dedicated binary Random Forest classifier (500 trees, $\lfloor\sqrt{19}\rfloor$ candidate features per split) trained on class-balanced data from $\mathbf{f}(x)$ (\S\ref{sec:method:features}) to distinguish depth-$d$ from depth-$(d{+}1)$ samples, evaluated via 5-fold stratified cross-validation (CV).
 Each pair uses an independent classifier to avoid decision boundary dilution from multi-class settings.
 
 \begin{definition}[Effective Discriminable Depth]

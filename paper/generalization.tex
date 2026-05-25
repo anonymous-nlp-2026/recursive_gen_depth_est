@@ -7,10 +7,10 @@ We test whether atlas accuracy (68.9--85.9\% four-class; d1--d3: 58.9--81.5\%) r
 \label{sec:gen:baselines}
 
 Table~\ref{tab:baselines} compares methods across all 9 cells.
-Four classifiers (RF, XGBoost, ordinal MLP, prototypical) converge within 0.8\,pp under cross-model transfer (Appendix~\ref{app:learned_estimator}), which confirms a feature-determined accuracy ceiling.
+Four classifiers (RF, XGBoost, ordinal multilayer perceptron (MLP), prototypical) converge within 0.8\,pp under cross-model transfer (Appendix~\ref{app:learned_estimator}), which confirms a feature-determined accuracy ceiling.
 
 \paragraph{Neural end-to-end baselines.}
-DeBERTa-v3-base (LoRA, 53--61\%) and RoBERTa-DCOL (ordinal contrastive, 64.5\%) lag RF by 14--33\,pp; note that RF features access reference-model log-probabilities unavailable to end-to-end PLM baselines (\S\ref{sec:discussion}).
+DeBERTa-v3-base (LoRA, 53--61\%) and RoBERTa-DCOL (ordinal contrastive, 64.5\%) lag RF by 14--33\,pp; note that RF features access reference-model log-probabilities unavailable to end-to-end pretrained language model (PLM) baselines (\S\ref{sec:discussion}).
 
 \paragraph{Binary detectors and membership inference.}
 Perturbation-based (DetectGPT, 28.8\%) and membership-inference (Min-K\% Prob, 33.2\%) methods produce scores with no ordinal resolution (Table~\ref{tab:baselines}); Binoculars d1v2 AUC\,=\,0.50--0.53 vs.\ RF 0.93 (Appendix~\ref{app:detector_baselines}). Binoculars convergence with our pipeline is discussed in \S\ref{sec:discussion}.

@@ -5,7 +5,7 @@ Table~\ref{tab:lora_protocol} lists the full LoRA fine-tuning configuration used
 At each depth $k$, a fresh LoRA adapter is initialized on the base model and trained on $\mathcal{D}_{k-1}$; adapters are not inherited across depths.
 The HuggingFace Trainer default linear decay schedule is used with no warmup.
 Target modules are model-specific: \texttt{query\_key\_value} (Pythia), \texttt{att\_proj} (OLMo), and \texttt{c\_attn} (GPT-2~XL).
-Cross-scale 7--8B experiments (Appendix~\ref{app:cross_scale_full}) use QLoRA (4-bit NF4) with $r{=}16$, $\alpha{=}32$; the 14B model uses FP16 LoRA with the same rank and scaling.
+Cross-scale 7--8B experiments (Appendix~\ref{app:cross_scale_full}) use Quantized LoRA (QLoRA; 4-bit NF4) with $r{=}16$, $\alpha{=}32$; the 14B model uses FP16 LoRA with the same rank and scaling.
 
 \begin{table}[h]
 \centering
@@ -163,7 +163,7 @@ GPT-2~XL, top-$k$  & 98.7 & 81.3 & 54.8 & 68.4 \\
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_confusion_matrix.pdf}
-\caption{Confusion matrices: best in-distribution (GPT-2 XL temp, 85.9\%) and best LOO transfer (OLMo, 69.2\%). d0 recall ${>}$99\%; errors spread to d1--d3 under transfer.}
+\caption{Confusion matrices: best in-distribution (GPT-2 XL temp, 85.9\%) and best leave-one-out (LOO) transfer (OLMo, 69.2\%). d0 recall ${>}$99\%; errors spread to d1--d3 under transfer.}
 \label{fig:confusion_matrix}
 \end{figure}
 
@@ -327,7 +327,7 @@ Mean & 46.7 & 0.319 \\
 \label{app:feature_overlap}
 
 We probe whether end-to-end PLM representations capture the same depth signals as our statistical features via linear probing of [CLS] representations from DeBERTa-v3-base and RoBERTa-base.
-PLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics; \texttt{var\_surprisal} and \texttt{p90\_ppl} yield negative $R^2$ under linear probing; these features are not linearly accessible in the pretrained representation space.
+PLM representations excel at surface lexical features (type--token ratio (TTR): $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics; \texttt{var\_surprisal} and \texttt{p90\_ppl} yield negative $R^2$ under linear probing; these features are not linearly accessible in the pretrained representation space.
 This confirms that the 20pp accuracy gap between feature-based and end-to-end methods (\S\ref{app:e2e}) stems from complementary, not redundant, representations: PLMs capture lexical patterns while the targeted statistical features capture distributional tail properties that constitute the dominant depth markers.
 
 \subsection{End-to-End Learning}
@@ -422,7 +422,7 @@ The model gap likely reflects training data composition: OLMo (trained on Dolma,
 Among C4 false positives for GPT-2~XL, predictions distribute as d1 (9.0\%), d2 (3.7\%), d3 (9.6\%); for OLMo, d1 (2.9\%), d2 (0.5\%), d3 (1.3\%). The non-uniform depth distribution suggests the classifier maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.
 
 \paragraph{Threshold calibration.}
-A pooled RF classifier (trained on all three families' nucleus data) achieves ECE\,=\,0.052 on in-distribution data; Platt scaling and isotonic regression yield no improvement; probability estimates are already well calibrated.
+A pooled RF classifier (trained on all three families' nucleus data) achieves Expected Calibration Error (ECE)\,=\,0.052 on in-distribution data; Platt scaling and isotonic regression yield no improvement; probability estimates are already well calibrated.
 The high FPR on web-crawl data is therefore a decision-threshold problem, not a probability calibration defect.
 Applying a confidence threshold $P(\mathrm{d0}) \geq 0.15$ to the pooled classifier reduces its C4 FPR from 33.4\% (not shown in Table~\ref{tab:calibration}) to 2.8\%, at a cost of only $-$0.3\,pp balanced accuracy (78.0\%$\to$77.7\%).
 The $P(\mathrm{d0})$ distribution is bimodal: 67\% of samples exceed 0.95 (high-confidence d0), while 33\% fall in the 0.15--0.30 uncertainty zone; the threshold separates these modes cleanly.
