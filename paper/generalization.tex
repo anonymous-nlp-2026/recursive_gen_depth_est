@@ -66,34 +66,32 @@ Mean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\
 \end{tabular}
 \end{table}
 
-Mean transfer accuracy is 66.4\% ($2.7{\times}$ chance; Table~\ref{tab:cross_model}; d1--d3: 55.4\%); d2 worst case 26.8\% (Pythia holdout; confusion matrices in Figure~\ref{fig:confusion_matrix}).
-Ordinal structure persists under transfer (QWK\,=\,0.81; 94.8\% of errors at $|\Delta| \leq 1$), supporting the claim that depth estimation exploits process-level regularity rather than model-specific artifacts.
+Mean transfer accuracy is 66.4\% ($2.7{\times}$ chance; Table~\ref{tab:cross_model}; d1--d3: 55.4\%); d2 worst case 26.8\% (Pythia holdout).
+Ordinal structure persists (QWK\,=\,0.81; 94.8\% errors at $|\Delta| \leq 1$), supporting that depth estimation exploits process-level regularity rather than model-specific artifacts.
 
 \subsection{Cross-Strategy Transfer}
 \label{sec:gen:crossstrategy}
 
-Cross-strategy transfer reveals a structural barrier: d1--d3 balanced accuracy drops to 45.9\% (four-class: 59.1\%), 7\,pp below cross-model transfer (Table~\ref{tab:cross_strategy}; full per-model results and Figure~\ref{fig:transfer_comparison} in Appendix~\ref{app:cross_strategy}).
-A two-stage pipeline (strategy classifier $\to$ depth classifier) recovers much of this gap (70.6\%, $+$11.5\,pp; oracle: 78.4\%; Appendix~\ref{app:extended_discussion}).
-Our depth estimation claims hold most strongly within-strategy or when the decoding configuration is known.
+Cross-strategy transfer reveals a structural barrier: d1--d3 balanced accuracy drops to 45.9\% (four-class: 59.1\%), 7\,pp below cross-model transfer (Table~\ref{tab:cross_strategy}; Appendix~\ref{app:cross_strategy}).
+A two-stage pipeline (strategy classifier $\to$ depth classifier) recovers much of this gap (70.6\%, $+$11.5\,pp; oracle: 78.4\%).
+Our claims hold most strongly within-strategy or when the decoding configuration is known.
 
 %% ----------------------------------------------------------------
 \subsection{Preliminary Cross-Scale Observations (14B)}
 \label{sec:gen:crossscale}
 
-At 14B (Qwen2.5-14B), self-reference yields 50.8\% ($2{\times}$ chance, $\mathrm{EDD}_{0.70}{=}0$); switching to cross-reference (Pythia-1.4B) shifts accuracy by $-$6.8\,pp to 44.1\% but raises $\mathrm{EDD}_{0.70}$ to 2 for nucleus and temperature; reference-model choice is therefore a major confound in cross-scale comparisons (Appendix~\ref{app:cross_scale_full}).
-At matched 1.5B scale, instruction tuning preserves depth signal (Appendix~\ref{app:instruct_1p5b}).
-Cross-domain transfer to arXiv abstracts reaches 74.1\% (Appendix~\ref{app:cross_boundary}).
+At 14B (Qwen2.5-14B), self-reference yields 50.8\% ($2{\times}$ chance, $\mathrm{EDD}_{0.70}{=}0$); cross-reference (Pythia-1.4B) raises $\mathrm{EDD}_{0.70}$ to 2 for nucleus and temperature but reduces accuracy by 6.8\,pp, making reference-model choice a major confound (Appendix~\ref{app:cross_scale_full}).
+At matched 1.5B scale, instruction tuning preserves depth signal (Appendix~\ref{app:instruct_1p5b}); cross-domain transfer to arXiv reaches 74.1\% (Appendix~\ref{app:cross_boundary}).
 
 \paragraph{Partial-mixing (accumulation).}
 \label{sec:gen:accumulation}
-Real-world contamination mixes synthetic and human text rather than fully replacing the training set.
-We test robustness under 25\% and 50\% synthetic mixing across three model--strategy cells (Table~\ref{tab:accum_auc}).
+Real-world contamination mixes synthetic and human text.
+We test robustness under 25\% and 50\% synthetic mixing across three cells (Table~\ref{tab:accum_auc}).
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_auc_decay.pdf}
 \caption{AUC decay curves for Pythia-1.4B (nucleus, depths 0--5) under three pipeline configurations: binary pairwise RF, 4-class RF, and 6-class RF. Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All curves converge below 0.70 at d4-vs-d5. Shaded bands: bootstrap 95\% CIs.}
 \label{fig:auc_decay}
 \end{figure}
-At 25\% mixing, all three cells preserve $\mathrm{EDD}_{0.70}{=}3$ with 8--15\,pp accuracy attenuation relative to full replacement.
-At 50\% mixing, 2/3 cells retain $\mathrm{EDD}{=}3$; the sole failure (GPT-2~XL, d2v3 AUC\,=\,0.695) falls 0.5\,pp below threshold.
+At 25\% mixing, all three cells preserve $\mathrm{EDD}_{0.70}{=}3$ with 8--15\,pp accuracy attenuation; at 50\%, 2/3 cells retain $\mathrm{EDD}{=}3$ (the sole failure falls 0.5\,pp below threshold).
 Per-passage predictions remain composition-independent (${\leq}$2.4\,pp recall shift; Appendix~\ref{app:mixed_depth}).

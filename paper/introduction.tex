@@ -12,7 +12,7 @@ The model collapse literature \cite{shumailov2024_nature,dohmatob2024_tale_of_ta
 No existing method estimates the ordinal recursive generation depth of a text passage from its content alone (Figure~\ref{fig:problem}).
 
 We find that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints are \textbf{consistent in direction but scale-dependent in magnitude} across the three model families and three decoding strategies studied.
-Specifically, the perplexity tail feature family (\texttt{p90\_ppl}, \texttt{p75\_ppl}, \texttt{kurtosis\_ppl}) and surprisal variance emerge as dominant depth indicators, with group-level dominance robust across all 9 model--strategy configurations and three importance measures.
+Specifically, the perplexity tail feature family---upper quantiles and kurtosis of the per-token perplexity distribution (\S\ref{sec:method:features})---and surprisal variance emerge as dominant depth indicators, with group-level dominance robust across all 9 model--strategy configurations and three importance measures.
 Our contribution centers on task formalization and systematic empirical characterization; the convergence of four classifiers within 0.8\,pp (\S\ref{sec:gen:baselines}) confirms that signal resides in feature design, not classifier architecture.
 We formalize recursive generation depth estimation as ordinal classification and find that a lightweight pipeline suffices: compute 19 reference-model statistical features (effective dimensionality ${\approx}$4--5 due to multicollinearity; \S\ref{sec:atlas:features}) and classify with a Random Forest (RF) into $K{+}1$ depth classes.
 To characterize how recursive generation reshapes these features, we construct the \emph{Depth Degradation Atlas}: a $3 \times 3$ grid of model families $\times$ decoding strategies spanning 4 depths (180K cell-instances).
@@ -21,7 +21,7 @@ The atlas reveals strategy-dependent degradation trajectories; we introduce \emp
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_problem_illustration.pdf}
-\caption{Recursive generation depth estimation. A seed corpus $\mathcal{D}_0$ feeds a LoRA finetuning--sampling loop producing successively deeper corpora. Given a passage~$x$, the task is to estimate its ordinal depth~$d$.}
+\caption{Recursive generation depth estimation. A seed corpus $\mathcal{D}_0$ feeds a Low-Rank Adaptation (LoRA) finetuning--sampling loop producing successively deeper corpora. Given a passage~$x$, the task is to estimate its ordinal depth~$d$.}
 \label{fig:problem}
 \end{figure*}
 Our contributions are:

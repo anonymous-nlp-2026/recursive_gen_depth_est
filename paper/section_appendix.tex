@@ -334,7 +334,7 @@ This confirms that the 20pp accuracy gap between feature-based and end-to-end me
 \label{app:e2e}
 
 DeBERTa-v3-base \cite{he2021_deberta_v3} and RoBERTa-base \cite{liu2019_roberta} finetuned end-to-end achieve 58.3\% ($\pm$4.7\%) and 59.5\% ($\pm$3.2\%) respectively, lagging the RF baseline (78.7\%) by 20.4pp and 19.2pp.
-The 1.2pp inter-backbone gap rules out architecture bias; Table~\ref{tab:e2e_detail} shows both backbones share the same failure mode (high d0 F1, $>$0.94, but collapsed d1/d2 performance, F1 $\leq$ 0.42), while RF achieves 0.596 d2 recall, a $>$2$\times$ advantage at the hardest depth class.
+The 1.2pp inter-backbone gap rules out architecture bias; Table~\ref{tab:e2e_detail} shows both backbones share the same failure mode (high d0 F1, $>$0.94, but collapsed d1/d2 performance, F1 $\leq$ 0.42), while RF achieves 0.592 d2 recall, a $>$2$\times$ advantage at the hardest depth class.
 
 \begin{table}[h]
 \centering
@@ -349,7 +349,7 @@ Method & Acc (\%) & d0 & d1 & d2 & d3 \\
 DeBERTa-v3 & 58.3\,$\pm$\,4.7 & .947 & .378 & .247 & .656 \\
 RoBERTa-base & 59.5\,$\pm$\,3.2 & .958 & .416 & .261 & .647 \\
 \midrule
-RF (19 feat.) & 78.7 & --- & --- & .596$^\dagger$ & --- \\
+RF (19 feat.) & 78.7 & --- & --- & .592$^\dagger$ & --- \\
 \bottomrule
 \multicolumn{6}{@{}l}{\footnotesize $^\dagger$Recall; shown for the depth class with the largest PLM--RF gap.}
 \end{tabular}}
@@ -499,7 +499,7 @@ Self-reference (Pythia-1.4B) yields 78.6\%; switching to a cross-architecture re
 \toprule
 Reference Model & Architecture & Accuracy (\%) \\
 \midrule
-Pythia-1.4B (self) & GPT-NeoX & 78.6 $\pm$ 0.6 \\
+Pythia-1.4B (self) & GPT-NeoX & 78.5 $\pm$ 0.6 \\
 OLMo-1B (cross) & OLMo & 74.5 $\pm$ 0.7 \\
 GPT-2~XL (cross) & GPT-2 & 67.3 $\pm$ 0.7 \\
 \bottomrule
@@ -1144,7 +1144,5 @@ Feature extraction requires a single forward pass of the reference model.
 On a single GPU this takes approximately 2 minutes for 5{,}000 passages; a CPU-only alternative requires approximately 50 minutes on server-grade hardware.
 RF classification adds negligible overhead ($<$1\,s).
 
-\section{Use of AI Assistants}
-\label{app:ai_assistants}
-
-The authors used AI-based writing assistants, including Claude, for limited support during manuscript preparation, including grammar polishing, wording suggestions, LaTeX editing, and code/debugging assistance. The tools were not used to generate the core research ideas, experimental design, methodological decisions, data analysis, or scientific conclusions. All AI-assisted text, code suggestions, and references were manually reviewed and edited by the authors.
+\section{Use of AI Assistance}
+We used Claude for coding, code drafting, debugging, and language polishing.

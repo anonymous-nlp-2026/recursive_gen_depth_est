@@ -1,10 +1,10 @@
-# Recursive Generation Depth Estimation
+# How Deep Is Your Data?
 
-Code for "Recursive Generation Depth Estimation: How Many Times Has This Text Been Through the Loop?"
+Code for "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints"
 
 ## Overview
 
-This repository contains code for estimating the ordinal recursive generation depth (d0-d3) of text passages using statistical features and Random Forest classification.
+As language models increasingly train on web text containing their own outputs, a recursive model-to-data-to-model loop arises, yet no method estimates how many such iterations a text has undergone. We formalize recursive generation depth estimation as ordinal classification and construct a benchmark of 180K cell-instances (140K unique passages) spanning three model families, three decoding strategies, and four depths under full-replacement chains at 1-1.5B scale. A lightweight pipeline (19 statistical features classified by Random Forest) achieves d1-d3 balanced accuracy of 59-82% across nine model-strategy cells, with Effective Discriminable Depth EDD_0.70 = 3 in 8/9 cells.
 
 ## Structure
 
